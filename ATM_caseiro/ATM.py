@@ -2,28 +2,28 @@ import json
 
 class Autentication():
     
-    def __init__(self, cpf, senha):
+    def __init__(self):
 
-        self.cpf = cpf
-        self.senha = senha
+        self.cpf = ''
+        self.senha = ''
 
-def fazer_login():
+def fazer_login(self):
     with open('users.json', 'r') as arquivo:
         dados = json.load(arquivo)
     
-    cpf = input=("CPF: ")
-    senha = input("Senha: ")
+    self.cpf = input=("CPF: ")
+    self.senha = input("Senha: ")
 
     for usuario in dados: 
-        if usuario['cpf'] == cpf and usuario['senha'] == senha:
+        if usuario['cpf'] == self.cpf and usuario['senha'] == self.senha:
             print('Login bem-sucedido!')
             return
         print("Credenciais inválidas")
 
 class Menu():
 
-    def __init__(self):
-        
+    def __init__(self) -> None:
+        pass
     
     
 
