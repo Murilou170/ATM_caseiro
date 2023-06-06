@@ -21,6 +21,9 @@ def fazer_login():
         print("Credenciais inválidas")
 
 class Menu():
+
+    def __init__(self):
+        
     
     
 
