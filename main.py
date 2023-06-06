@@ -1,10 +1,10 @@
-from ATM_caseiro.ATM import Menu
+from ATM_caseiro.ATM import Autentication
 
 
 def workspace():
 
-    cliente = Menu()
+    login = Autentication()
 
-    cliente.exibir_menu()
+    login.fazer_login()
 
-    workspace()
+workspace()
