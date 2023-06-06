@@ -1,7 +1,7 @@
 import json
 
 class Autentication():
-    
+
     def __init__(self, cpf, senha):
 
         self.cpf = cpf
@@ -23,11 +23,10 @@ def fazer_login():
 class Menu():
 
     def __init__(self):
-        
-    
+        pass    
     
 
-    def exibir_menu():
+    def exibir_menu(self):
         print("\n===== ATM CASEIRO =====")
         print("1. Extrato\n")
         print("2. Saque\n")
@@ -37,11 +36,11 @@ class Menu():
         print("0. Sair\n")
         print("================")
 
-    def obter_opcao():
+    def obter_opcao(self):
         opcao = input("Digite o número da opção desejada: ")
         return opcao
     
-    def executar_opcao(opcao):
+    def executar_opcao(self, opcao):
         if opcao == "1":
             print("O seu extrato: ")
         elif opcao == "2":
