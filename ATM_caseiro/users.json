@@ -1,4 +1,12 @@
-{
-    "47508432077": "123456",
-    "05755800111": "murilolindo"
-  }
+[
+    {
+      "id": 1,
+      "nome": "Murilo",
+      "cpf": "05755800111",
+      "senha": "murilolindo",
+      "saldo": 0,
+      "telefone": "61983112204",
+      "endereço": "QRI 1 casa 8"
+    }
+  ]
+  
