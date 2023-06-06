@@ -7,6 +7,15 @@
       "saldo": 0,
       "telefone": "61983112204",
       "endereço": "QRI 1 casa 8"
+    },
+    {
+      "id": 2,
+      "nome": "Gabriel",
+      "cpf": "57",
+      "senha": "murilolindodms",
+      "saldo": 0,
+      "telefone": "40028922",
+      "endereço": "QRI 2 casa 0"
     }
   ]
   
