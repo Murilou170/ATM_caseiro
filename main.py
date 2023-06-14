@@ -1,5 +1,6 @@
-from ATM_caseiro.ATM import Autentication,MenuCliente,MenuGerente
-
+from ATM_caseiro.Classes.Auth import Autentication
+from ATM_caseiro.Classes.MenuCliente import MenuCliente
+from ATM_caseiro.Classes.MenuGerente import MenuGerente
 
 def workspace():
 

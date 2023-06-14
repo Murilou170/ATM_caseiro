@@ -1,21 +1,23 @@
 [
     {
-      "id": 1,
-      "nome": "Murilo",
-      "cpf": "05755800111",
-      "senha": "murilolindo",
-      "saldo": 0,
-      "telefone": "61983112204",
-      "endereço": "QRI 1 casa 8"
+        "nome": "murilo",
+        "cpf": "2",
+        "senha": "mur",
+        "saldo": 0,
+        "endereco": "asd"
     },
     {
-      "id": 2,
-      "nome": "Gabriel",
-      "cpf": "57",
-      "senha": "murilolindodms",
-      "saldo": 0,
-      "telefone": "40028922",
-      "endereço": "QRI 2 casa 0"
+        "nome": "gerente1",
+        "cpf": "00",
+        "saldo": 0,
+        "endereco": "00",
+        "senha": "123"
+    },
+    {
+        "nome": "gab",
+        "cpf": "asd",
+        "saldo": 0,
+        "endereco": "asdasd",
+        "senha": "asd"
     }
-  ]
-  
+]
