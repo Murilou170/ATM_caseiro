@@ -55,8 +55,8 @@ class Banco():
             for i in range(len(usersList)):
                 if usersList[i][f'cpf'] == cpf:
                     usersList[i][f'saldo'] += valor
-                    print("\n\tDepósito efetuado com Sucesso!\n")
                     self.registrar_transacao(cpf, f"Depósito de R${valor:.2f}")
+                    print("\n\tDepósito efetuado com Sucesso!\n")
             
             with open(wh,"w") as where:
                 json.dump(usersList,where,indent=4)
@@ -66,7 +66,8 @@ class Banco():
         self.saque(fromcpf,valor)
         self.deposito(tocpf,valor)
         print("\n\tPagamento Realizado com sucesso!\n")
-        self.registrar_transacao(cpf, f"Pagamento de R${valor:.2f}")
+        self.registrar_transacao(fromcpf, f"Pagamento enviado de R${valor:.2f}")
+        self.registrar_transacao(tocpf, f"Pagamento recebido de R${valor:.2f}")
 
     def pedirCredito(self,cpf,valor):
         wh = "ATM_caseiro/users.json"

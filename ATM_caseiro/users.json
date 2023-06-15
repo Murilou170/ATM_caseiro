@@ -10,7 +10,7 @@
     {
         "nome": "Murilo",
         "cpf": "057",
-        "saldo": 500,
+        "saldo": 1000,
         "credito": 0,
         "endereco": "QBR4",
         "senha": "001",
@@ -18,18 +18,31 @@
             "2023-06-15 19:39:09: Saque de R$10.00",
             "2023-06-15 19:44:56: Saque de R$20.00",
             "2023-06-15 19:52:53: Saque de R$180.00",
-            "2023-06-15 20:35:23: Saque de R$1000.00"
+            "2023-06-15 20:35:23: Saque de R$1000.00",
+            "2023-06-15 20:44:40: Pagamento de R$1000.00",
+            "2023-06-15 20:47:21: Saque de R$700.00",
+            "2023-06-15 20:47:21: Pagamento recebido de R$700.00",
+            "2023-06-15 20:48:22: Saque de R$5.00",
+            "2023-06-15 20:48:22: Pagamento enviado de R$5.00",
+            "2023-06-15 20:48:41: Pagamento recebido de R$850.00",
+            "2023-06-15 20:49:06: Saque de R$50.00"
         ]
     },
     {
         "nome": "Gabriel",
         "cpf": "025",
-        "saldo": 205,
+        "saldo": 855,
         "credito": 0,
         "endereco": "OPA",
         "senha": "002",
         "historico": [
-            "2023-06-15 19:40:32: Saque de R$25.00"
+            "2023-06-15 19:40:32: Saque de R$25.00",
+            "2023-06-15 20:45:15: Saque de R$205.00",
+            "2023-06-15 20:45:15: Pagamento de R$205.00",
+            "2023-06-15 20:47:21: Pagamento enviado de R$700.00",
+            "2023-06-15 20:48:22: Pagamento recebido de R$5.00",
+            "2023-06-15 20:48:41: Saque de R$850.00",
+            "2023-06-15 20:48:41: Pagamento enviado de R$850.00"
         ]
     }
 ]
