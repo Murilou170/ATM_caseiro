@@ -1,4 +1,4 @@
-from BancoDeDados import BancoDeDados
+from ATM_caseiro.Classes.BancoDeDados import Banco
 
 class MenuGerente():
     def __init__(self):
@@ -19,7 +19,7 @@ class MenuGerente():
         return opcao
     
     def executar_opcao(self, opcao):
-        bc = BancoDeDados()
+        bc = Banco()
 
         if opcao == "1":
             bc.addUser()

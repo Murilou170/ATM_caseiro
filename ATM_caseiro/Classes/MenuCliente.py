@@ -1,4 +1,4 @@
-from BancoDeDados import BancoDeDados
+from ATM_caseiro.Classes.BancoDeDados import Banco
 
 class MenuCliente():
     def __init__(self):
@@ -20,16 +20,32 @@ class MenuCliente():
         return opcao
     
     def executar_opcao(self, opcao):
+        bc = Banco()
+
         if opcao == "1":
             print("O seu extrato: ")
         elif opcao == "2":
-            print("Valor desejado do saque R$: ")
+            cpf = input("\nPor favor, confirme seu CPF:\t")
+            valor = input("\nValor desejado do saque R$:\t")
+            bc.saque(cpf,int(valor))
+
         elif opcao == "3":
-            print("Valor desejado para depósito R$: ")
+            cpf = input("Por favor, confirme seu CPF:\t")
+            valor = input("Valor desejado do depósito R$:\t")
+            bc.deposito(cpf,int(valor))
+
         elif opcao == "4":
-            print("Realizar Pagamento de R$: ")
+            fromcpf = input("\nPor favor, confirme seu CPF:\t")
+            tocpf = input("\nPor favor, confirme o CPF da conta onde o pagamento será depositado:\t")
+            valor = input("\nRealizar Pagamento de R$:\t")
+            bc.pagamento(int(valor),fromcpf,tocpf)
+
         elif opcao == "5":
-            print("Qual valor você quer de crédito R$: ")
+
+            cpf = input("Por favor, confirme seu CPF:\t")
+            valor = input("Valor desejado do crédito R$:\t")
+            bc.pedirCredito(cpf,int(valor))
+
         elif opcao == "0":
             print("Adeus")
             exit()

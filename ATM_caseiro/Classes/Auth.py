@@ -5,6 +5,7 @@ class User():
         self.nome = nome
         self.cpf = cpf
         self.saldo = 0
+        self.credito = 0
         self.endereco = endereco
         self.senha = senha
 

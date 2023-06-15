@@ -4,20 +4,39 @@
         "cpf": "2",
         "senha": "mur",
         "saldo": 0,
+        "credito": 0,
         "endereco": "asd"
     },
     {
         "nome": "gerente1",
         "cpf": "00",
         "saldo": 0,
+        "credito": 0,
         "endereco": "00",
         "senha": "123"
     },
     {
         "nome": "gab",
         "cpf": "asd",
-        "saldo": 0,
+        "saldo": 9123908,
+        "credito": 0,
         "endereco": "asdasd",
         "senha": "asd"
+    },
+    {
+        "nome": "CaioFEP",
+        "cpf": "2",
+        "saldo": 0,
+        "credito": 0,
+        "endereco": "3",
+        "senha": "FAP"
+    },
+    {
+        "nome": "Hugo",
+        "cpf": "3",
+        "saldo": 67,
+        "credito": 57,
+        "endereco": "Rua 1",
+        "senha": "Hugobonito"
     }
 ]
