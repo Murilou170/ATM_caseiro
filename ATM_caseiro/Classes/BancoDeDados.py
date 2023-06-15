@@ -20,20 +20,26 @@ class Banco():
             atualsaldo = usersList[i]['saldo']
             atualcredito = usersList[i]['credito']
             
-            if atualcpf == cpf and valor < atualsaldo + atualcredito:
-                atualsaldo -= int(valor)
+            if atualcpf == cpf and valor <= atualsaldo + atualcredito:
+                usersList[i]['saldo'] = atualsaldo - int(valor)
 
                 if atualsaldo < 0:
-                    atualsaldosaldo += atualcredito
-                    atualcredito = 0
-        
+                    usersList[i]['saldo'] += atualcredito
+                    usersList[i]['credito'] = 0
+                
+
+                with open(wh,"w") as where:
+                    json.dump(usersList,where,indent=4)
+                
                 print("\n\tSaque efetuado com Sucesso!\n")
+                break
+                
     
             elif usersList[i][f'cpf'] == cpf and valor > usersList[i]['saldo'] + usersList[i][f'credito']:
                 print("\nNão há dinheiro o suficiente, o seu saldo não foi alterado.\n")
+                break
         
-        with open(wh,"w") as where:
-            json.dump(usersList,where,indent=4)
+        
 
 
     def deposito(self,cpf,valor):

@@ -3,9 +3,10 @@
         "nome": "murilo",
         "cpf": "2",
         "senha": "mur",
-        "saldo": 0,
+        "saldo": 100,
         "credito": 0,
-        "endereco": "asd"
+        "endereco": "asd",
+        "extrato": []
     },
     {
         "nome": "gerente1",
@@ -13,7 +14,8 @@
         "saldo": 0,
         "credito": 0,
         "endereco": "00",
-        "senha": "123"
+        "senha": "123",
+        "extrato": []
     },
     {
         "nome": "gab",
@@ -21,15 +23,17 @@
         "saldo": 9123908,
         "credito": 0,
         "endereco": "asdasd",
-        "senha": "asd"
+        "senha": "asd",
+        "extrato": []
     },
     {
         "nome": "CaioFEP",
         "cpf": "2",
-        "saldo": 0,
+        "saldo": 100,
         "credito": 0,
         "endereco": "3",
-        "senha": "FAP"
+        "senha": "FAP",
+        "extrato": []
     },
     {
         "nome": "Hugo",
@@ -37,6 +41,32 @@
         "saldo": 67,
         "credito": 57,
         "endereco": "Rua 1",
-        "senha": "Hugobonito"
+        "senha": "Hugobonito",
+        "extrato": [
+            [
+                "saque",
+                50
+            ],
+            [
+                "saque",
+                50
+            ],
+            [
+                "saque",
+                50
+            ],
+            [
+                "saque",
+                50
+            ],
+            [
+                "saque",
+                50
+            ],
+            [
+                "saque",
+                50
+            ]
+        ]
     }
 ]
