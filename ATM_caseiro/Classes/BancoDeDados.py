@@ -117,19 +117,20 @@ class Banco():
         print("\t================")
 
         for i in range(len(usersList)):
-            print(len(usersList))
             if usersList[i]['nome'] == aDeletar and usersList[i]['saldo'] == 0:
                 
                 usersList.pop(i)
-                print("\n\n\tMenos uma conta pra vc gerenciar!!\n\n")
+                print("\n\nUsuário deletado com Sucesso!\n\n")
+                break
 
             elif usersList[i]['nome'] == aDeletar and usersList[i]['saldo'] != 0:
                     
-                    print("\n\n\tNão foi possível deletar o usuário...saldo diferente de 0\n\n")
+                print("\n\n\tNão foi possível deletar o usuário...saldo diferente de 0\n\n")
+                break
 
         with open(wh, "w") as js:
             json.dump(usersList, js, indent=4)
-            print("\n\nUsuário deletado com Sucesso!\n\n")
+            
 
 
 
