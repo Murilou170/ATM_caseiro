@@ -22,7 +22,7 @@ class Autentication():
         foundClient = False
         gerente = False
         
-        with open("Projeto4/ATM_caseiro/users.json", "r") as arquivo:
+        with open("ATM_caseiro/users.json", "r") as arquivo:
             dados = json.load(arquivo)
         
         self.cpf = str(input("CPF: "))

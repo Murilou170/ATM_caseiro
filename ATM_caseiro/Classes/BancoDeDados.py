@@ -1,3 +1,4 @@
+import datetime
 import json
 from ATM_caseiro.Classes.Auth import User
 
@@ -8,7 +9,7 @@ class Banco():
 
 
     def saque(self,cpf,valor):
-        wh = "Projeto4/ATM_caseiro/users.json"
+        wh = "ATM_caseiro/users.json"
         usersList = []
 
         with open(wh) as js:
@@ -22,6 +23,7 @@ class Banco():
             
             if atualcpf == cpf and valor <= atualsaldo + atualcredito:
                 usersList[i]['saldo'] = atualsaldo - int(valor)
+                
 
                 if atualsaldo < 0:
                     usersList[i]['saldo'] += atualcredito
@@ -32,6 +34,7 @@ class Banco():
                     json.dump(usersList,where,indent=4)
                 
                 print("\n\tSaque efetuado com Sucesso!\n")
+                self.registrar_transacao(cpf, f"Saque de R${valor:.2f}")
                 break
                 
     
@@ -43,7 +46,7 @@ class Banco():
 
 
     def deposito(self,cpf,valor):
-            wh = "Projeto4/ATM_caseiro/users.json"
+            wh = "ATM_caseiro/users.json"
             usersList = []
 
             with open(wh) as js:
@@ -53,6 +56,7 @@ class Banco():
                 if usersList[i][f'cpf'] == cpf:
                     usersList[i][f'saldo'] += valor
                     print("\n\tDepósito efetuado com Sucesso!\n")
+                    self.registrar_transacao(cpf, f"Depósito de R${valor:.2f}")
             
             with open(wh,"w") as where:
                 json.dump(usersList,where,indent=4)
@@ -62,9 +66,10 @@ class Banco():
         self.saque(fromcpf,valor)
         self.deposito(tocpf,valor)
         print("\n\tPagamento Realizado com sucesso!\n")
+        self.registrar_transacao(cpf, f"Pagamento de R${valor:.2f}")
 
     def pedirCredito(self,cpf,valor):
-        wh = "Projeto4/ATM_caseiro/users.json"
+        wh = "ATM_caseiro/users.json"
         usersList = []
 
         with open(wh) as js:
@@ -73,6 +78,7 @@ class Banco():
         for i in range(len(usersList)):
             if usersList[i][f'cpf'] == cpf and valor <= usersList[i]['saldo'] and not bool(usersList[i][f'credito']):
                 usersList[i][f'credito'] += valor
+                self.registrar_transacao(cpf, f"Crédito aprovado de R${valor:.2f}")
                 print("\n\tDepósito de crédito efetuado com Sucesso!\n")
             elif usersList[i][f'cpf'] == cpf and valor > usersList[i]['saldo']:
                 print("\n\tO credito requisitado é maior do que o saldo atual. Credito não concedido.\n")
@@ -81,7 +87,7 @@ class Banco():
             json.dump(usersList,where,indent=4)
 
     def addUser(self):
-        wh = "Projeto4/ATM_caseiro/users.json"
+        wh = "ATM_caseiro/users.json"
         usersList = []
 
         with open(wh) as js:
@@ -107,7 +113,7 @@ class Banco():
 
 
     def deleteUser(self):
-        wh = "Projeto4/ATM_caseiro/users.json"
+        wh = "ATM_caseiro/users.json"
 
         with  open(wh) as js:
             usersList = json.load(js)
@@ -142,7 +148,7 @@ class Banco():
                 if usersList[i][f'{info}'] == antigo:
                     usersList[i][f'{info}'] = novo
 
-        wh = "Projeto4/ATM_caseiro/users.json"
+        wh = "ATM_caseiro/users.json"
 
         with  open(wh) as js:
             usersList = json.load(js)
@@ -201,7 +207,7 @@ class Banco():
 
 
     def visualizarUsuario(self):
-        wh = "Projeto4/ATM_caseiro/users.json"
+        wh = "ATM_caseiro/users.json"
 
         with  open(wh) as js:
             usersList = json.load(js)
@@ -212,3 +218,42 @@ class Banco():
         for i in range(len(usersList)):
             if usersList[i]['nome'] == aProcurar:
                 print(usersList[i])
+
+    def extrato(self, cpf):
+        wh = "ATM_caseiro/users.json"
+        usersList = []
+
+        with open(wh) as js:
+            usersList = json.load(js)
+
+        for user in usersList:
+            if user['cpf'] == cpf:
+                historico = user.get('historico', [])
+                print("\n===== Extrato =====")
+                print(f"CPF: {cpf}")
+                print("Transações:")
+                for transacao in historico:
+                    print(f"\t- {transacao}")
+                print("====================")
+                break
+        else:
+            print("CPF não encontrado.")
+
+
+    def registrar_transacao(self, cpf, transacao):
+        wh = "ATM_caseiro/users.json"
+        usersList = []
+
+        with open(wh) as js:
+            usersList = json.load(js)
+
+        for user in usersList:
+            if user['cpf'] == cpf:
+                historico = user.get('historico', [])
+                data_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                historico.append(f"{data_hora}: {transacao}")
+                user['historico'] = historico
+                break
+
+        with open(wh, "w") as js:
+            json.dump(usersList, js, indent=4)
