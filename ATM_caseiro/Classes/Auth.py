@@ -8,6 +8,7 @@ class User():
         self.credito = 0
         self.endereco = endereco
         self.senha = senha
+        self.historico = []
 
 
 class Autentication():

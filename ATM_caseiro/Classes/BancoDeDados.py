@@ -21,7 +21,7 @@ class Banco():
             atualsaldo = usersList[i]['saldo']
             atualcredito = usersList[i]['credito']
             
-            if atualcpf == cpf and valor <= atualsaldo + atualcredito:
+            if atualcpf == cpf and int(valor) <= atualsaldo + atualcredito:
                 usersList[i]['saldo'] = atualsaldo - int(valor)
                 
 
@@ -34,11 +34,11 @@ class Banco():
                     json.dump(usersList,where,indent=4)
                 
                 print("\n\tSaque efetuado com Sucesso!\n")
-                self.registrar_transacao(cpf, f"Saque de R${valor:.2f}")
+                self.registrar_transacao(cpf, f"Saque de R${int(valor):.2f}")
                 break
                 
     
-            elif usersList[i][f'cpf'] == cpf and valor > usersList[i]['saldo'] + usersList[i][f'credito']:
+            elif usersList[i][f'cpf'] == cpf and int(valor) > usersList[i]['saldo'] + usersList[i][f'credito']:
                 print("\nNão há dinheiro o suficiente, o seu saldo não foi alterado.\n")
                 break
         
@@ -54,38 +54,53 @@ class Banco():
             
             for i in range(len(usersList)):
                 if usersList[i][f'cpf'] == cpf:
-                    usersList[i][f'saldo'] += valor
-                    self.registrar_transacao(cpf, f"Depósito de R${valor:.2f}")
+                    
+                    usersList[i][f'saldo'] += int(valor)
+                    for user in usersList:
+                        if user['cpf'] == cpf:
+                            historico = user.get('historico', [])
+                            data_hora = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                            historico.append(f"{data_hora}:  Deposito de R$ {int(valor):.2f} ")
+                            user['historico'] = historico
+                            break
                     print("\n\tDepósito efetuado com Sucesso!\n")
             
             with open(wh,"w") as where:
-                json.dump(usersList,where,indent=4)
+                        json.dump(usersList,where,indent=4)
 
     def pagamento(self,valor,fromcpf,tocpf):
+        wh = "ATM_caseiro/users.json"
+        usersList = []
+        with open(wh) as js:
+            usersList = json.load(js)
 
-        self.saque(fromcpf,valor)
-        self.deposito(tocpf,valor)
-        print("\n\tPagamento Realizado com sucesso!\n")
-        self.registrar_transacao(fromcpf, f"Pagamento enviado de R${valor:.2f}")
-        self.registrar_transacao(tocpf, f"Pagamento recebido de R${valor:.2f}")
+        self.saque(fromcpf,int(valor))
+        for user in usersList:
+            
+            if user['cpf'] == fromcpf and int(valor) <= user['saldo'] + user['credito']:
+                self.deposito(tocpf,int(valor))
+                print("\n\tPagamento Realizado com sucesso!\n")
+                self.registrar_transacao(fromcpf, f"Pagamento enviado de R${int(valor):.2f}")
+                self.registrar_transacao(tocpf, f"Pagamento recebido de R${int(valor):.2f}")
 
-    def pedirCredito(self,cpf,valor):
+    def pedirCredito(self, cpf, valor):
         wh = "ATM_caseiro/users.json"
         usersList = []
 
         with open(wh) as js:
             usersList = json.load(js)
-        
-        for i in range(len(usersList)):
-            if usersList[i][f'cpf'] == cpf and valor <= usersList[i]['saldo'] and not bool(usersList[i][f'credito']):
-                usersList[i][f'credito'] += valor
-                self.registrar_transacao(cpf, f"Crédito aprovado de R${valor:.2f}")
-                print("\n\tDepósito de crédito efetuado com Sucesso!\n")
-            elif usersList[i][f'cpf'] == cpf and valor > usersList[i]['saldo']:
-                print("\n\tO credito requisitado é maior do que o saldo atual. Credito não concedido.\n")
 
-        with open(wh,"w") as where:
-            json.dump(usersList,where,indent=4)
+        for i in range(len(usersList)):
+            if usersList[i][f'cpf'] == cpf and int(valor) <= usersList[i]['saldo']:
+                with open(wh, "w") as js:
+                    json.dump(usersList, js, indent=4)
+                usersList[i][f'credito'] += int(valor)
+                self.registrar_transacao(cpf, f"Crédito aprovado de R${int(valor):.2f}")
+                print("\n\tDepósito de crédito efetuado com Sucesso!\n")
+            elif usersList[i][f'cpf'] == cpf and int(valor) > usersList[i]['saldo']:
+                print("\n\tO crédito requisitado é maior do que o saldo atual. Crédito não concedido.\n")
+
+        
 
     def addUser(self):
         wh = "ATM_caseiro/users.json"
