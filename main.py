@@ -1,15 +1,20 @@
-from ATM_caseiro.ATM import MenuClient, Autentication, fazer_login
-
+from ATM_caseiro.Classes.Auth import Autentication
+from ATM_caseiro.Classes.MenuCliente import MenuCliente
+from ATM_caseiro.Classes.MenuGerente import MenuGerente
 
 def workspace():
 
-    # fazer login
     login = Autentication()
-    login.cpf()
-    login.senha()
 
-    # cliente = MenuClient()
+    login.fazer_login()
 
-    # cliente.exibir_menu()
+    
+    if login.gerenteAutenticado:
+        menuGerente = MenuGerente()
+        menuGerente.loop()
 
-    workspace()
+    elif login.usuarioAutenticado:
+        menuCliente = MenuCliente()
+        menuCliente.loop()
+
+workspace()
